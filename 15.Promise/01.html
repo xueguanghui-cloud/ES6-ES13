@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function ajax(url, successCallback, errorCallback) {
+      setTimeout(() => {
+        successCallback()
+        // errorCallback()
+      }, 2000);
+
+    }
+
+    ajax("/aaa", () => {
+      console.log("ajax 成功");
+      ajax("/bbb", () => {
+        console.log("ajax 成功");
+        ajax("/ccc", () => {
+          console.log("ajax 成功");
+        }, () => {
+          console.log("ajax 失败");
+        })
+      }, () => {
+        console.log("ajax 失败");
+      })
+    }, () => {
+      console.log("ajax 失败");
+    });
+
+
+
+  </script>
+</body>
+
+</html>

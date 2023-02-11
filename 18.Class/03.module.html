@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="./03.module.js" defer></script> -->
+  <script src="./03.module1.js"></script>
+  <script src="./03.module2.js"></script>
+
+  <!-- 
+    defer 和 async
+    defer: 这个布尔属性被设定用来通知浏览器该脚本将再文档解析后，触发 DOMContentLoaded
+           事件前执行，有 defer 属性的脚本会阻止 DOMContentloaded 事件，直到脚本被加载
+           并且解析完成。
+           注意：如果缺少 src 属性（即内嵌脚本），该属性不应该被使用，因为这种情况下他不起
+           作用。defer 属性对该模块脚本没有作用 —— 他们默认defer。
+    
+    async: 对于普通脚本，如果存在 async 属性，那么普通脚本会被并行请求，并尽快解析和执行。
+           对于模块脚本，如果存在 async 属性，那么脚本及其所有依赖都会再延缓队列中执行，因
+           此它们会被并行请求，并尽快解析和执行。该属性能够雄安出解析阻塞的 JavaScript。解
+           析阻塞的 JavaScript 会导致浏览器必须加载并执行该脚本，之后才能继续解析。defer
+           在这一点上也有类似的作用。这个就是布尔属性:布尔属性的存在意味着 true 值，布尔属
+           性的缺失意味着 false 值。
+   -->
+</head>
+
+<body>
+  <script>
+    /*
+    模块化
+      异步加载、私密不漏、重名不怕、依赖不乱
+    */
+    test()
+  </script>
+</body>
+
+</html>

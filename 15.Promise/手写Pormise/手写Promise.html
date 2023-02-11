@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./手写Pormise.js"></script>
+
+  <script>
+
+    var p = new KerwinPromise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("success info");
+        // reject("failure info");
+      }, 1000);
+    })
+
+    p.then((result) => {
+      console.log('result:', result);
+      return new KerwinPromise((resolve, reject) => {
+        setTimeout(() => {
+          reject("kerwin " + result)
+        }, 1000);
+      })
+    }, err => {
+      console.log("error:", err);
+    }).then((res) => {
+      console.log("result2:", res);
+    }, err => {
+      console.log("error2:", err);
+      return new KerwinPromise((resolve, reject) => {
+        reject("error2 " + err)
+      })
+    }).then((res) => {
+      console.log("result3:", res);
+    }, err => {
+      console.log("error3:", err);
+      return "32131"
+    }).catch(err => {
+      console.log("catch:", err);
+    })
+  </script>
+</body>
+
+</html>

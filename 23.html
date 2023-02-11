@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="like">❤</button>
+  <script>
+    let weakmap = new WeakMap()
+    let like = new WeakRef(document.getElementById("like"))
+    weakmap.set(like.deref(), { click: 0 })
+
+    like.deref().onclick = function () {
+      let times = weakmap.get(like.deref())
+      times.click++;
+    }
+
+    setTimeout(() => {
+      document.body.removeChild(like.deref())
+      console.log('like removed');
+    }, 3000);
+
+
+    /* let weakmap = new WeakMap()
+    weakmap.set(document.getElementById("like"), { click: 0 })
+
+    document.getElementById("like").addEventListener('click', function () {
+      let times = weakmap.get(document.getElementById("like"))
+      times.click++;
+    }, false)
+
+    setTimeout(() => {
+      document.body.removeChild(document.getElementById("like"))
+      console.log('like removed');
+    }, 3000); */
+
+  </script>
+</body>
+
+</html>

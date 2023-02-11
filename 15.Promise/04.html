@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function ajax(url) {
+      return new Promise((resolve, reject) => {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", url, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              resolve(JSON.parse(xhr.responseText));
+            } else {
+              reject(xhr.responseText);
+            }
+          }
+        }
+      })
+    }
+
+    /*
+     // 链式调用
+    const name = "tiechui"
+    ajax(`http://localhost:3000/news?author=${name}`).then(res => {
+      console.log("success: ", res[0].id);
+      return ajax(`http://localhost:3000/comments?newsId=${res[0].id}`)
+    }).then(res => {
+      console.log(res);
+    }) */
+
+    // Promise.all()
+    /* const list = ["kerwin", "tiechui", "gangdan"]
+
+    function getData() {
+      var newList = list.map(item => ajax(`http://localhost:3000/news?author=${item}`))
+      return Promise.all(newList)
+    }
+    getData().then((result) => {
+      console.log(result);
+    }).catch((err) => {
+      console.log(err);
+    }); */
+
+
+    // Promise.race()
+    /* var p1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("data-111")
+      }, 1000);
+    })
+
+    var p2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("data-222")
+      }, 2000);
+    })
+
+    Promise.race([p1, p2]).then(res => {
+      console.log(res);
+    }) */
+
+
+
+    /* var p1 = ajax(`http://www.xiongmaoyouxuan.com/api/tabs`)
+    var p2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject("超时")
+      }, 2000);
+    })
+
+    Promise.race([p1, p2]).then(res => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    }) */
+
+    // Promise.allSettled()
+    /* Promise.allSettled([ajax(`http://www.xiongmaoyouxuan.com/api/tabs`), ajax(`https://m.maizuo.com/gateway?cityId=110100&k=4770248`)]).then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    }) */
+
+    // Promise.any()
+    /* var p1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // resolve("沃尔玛")
+        reject("error");
+      }, 1000);
+    })
+
+    var p2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // resolve("河马")
+        reject("error");
+      }, 2000);
+    })
+
+    var p3 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("和润")
+      }, 3000);
+    })
+
+    Promise.any([p1, p2, p3]).then((result) => {
+      console.log(result);
+    }).catch((err) => {
+      console.log(err);
+    }); */
+
+
+    var p = new Promise((resolve, reject) => {
+      // resolve("success info");
+      reject("error info");
+    })
+    p.then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    }).finally(() => {
+      console.log("finally");
+    })
+  </script>
+</body>
+
+</html>

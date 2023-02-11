@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="./03.module1.js" type="module"></script> -->
+</head>
+
+<body>
+  <div></div>
+  <script type="module">
+    /*
+    模块化
+      异步加载、私密不漏、重名不怕、依赖不乱
+    */
+    // 导入 03.module1.js
+    import { A1, A2, test } from "./03.module1.js"
+    import obj2 from "./03.module2.js"
+    A1();
+    A2();
+    test();
+    obj2.test()
+  </script>
+</body>
+
+</html>
